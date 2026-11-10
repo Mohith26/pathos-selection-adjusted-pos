@@ -133,7 +133,7 @@ function render() {
     { label: "Unadjusted PoS", data: relPts(V.reliabilityUnadjusted), backgroundColor: "#E2C94B", borderColor: "#C9AE2E", showLine: true, pointRadius: 6, pointStyle: "rectRot" },
     { label: "Perfect calibration", type: "line", data: [{ x: 0, y: 0 }, { x: 1, y: 1 }], borderColor: "#9AA6AA", borderDash: [5, 4], borderWidth: 1, pointRadius: 0 },
   ] }, options: { maintainAspectRatio: false, plugins: { legend, tooltip: { callbacks: { label: (c) => ` predicted ${pct(c.raw.x)}, realized ${pct(c.raw.y)}${c.raw.n ? ` (n=${c.raw.n})` : ""}` } } },
-    scales: { x: { min: 0, max: 1, grid, border, title: { display: true, text: "Predicted PoS" }, ticks: { callback: (v) => pct(v) } }, y: { min: 0, max: 1, grid, border, title: { display: true, text: "Realized success" }, ticks: { callback: (v) => pct(v) } } } } });
+    scales: { x: { min: 0, max: 1, grid, border, title: { display: true, text: "Predicted PoS" }, ticks: { callback: (v) => Math.round(100 * v) + "%" } }, y: { min: 0, max: 1, grid, border, title: { display: true, text: "Realized success" }, ticks: { callback: (v) => Math.round(100 * v) + "%" } } } } });
   draw("c-hit", { type: "bar", data: { labels: ["Shortlist by unadjusted PoS", "Shortlist by adjusted PoS"], datasets: [
     { label: "Unadjusted PoS (predicted)", data: [u.predNaive, a.predNaive].map((v) => 100 * v), backgroundColor: "#fff", borderColor: "#244A54", borderWidth: 1, borderDash: [3, 3] },
     { label: "Adjusted PoS (predicted)", data: [u.predAdj, a.predAdj].map((v) => 100 * v), backgroundColor: "#B7E4E2", borderColor: "#244A54", borderWidth: 1 },
