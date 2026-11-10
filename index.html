@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scout · Selection-adjusted PoS · PathOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Lexend+Exa:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-l">
+    <a href="#" class="logo"><img src="assets/pathos-logo-white.svg" alt="Pathos"></a>
+    <span class="os">PathOS&trade;</span>
+  </div>
+  <ul class="menu">
+    <li><a href="#">Foundry</a></li>
+    <li class="on"><a href="#">Scout</a></li>
+    <li><a href="#">Sprint</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Data</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-in">
+    <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"></svg>
+    <div>
+      <div class="kicker">Scout &middot; Shortlist review</div>
+      <h1>Selection-adjusted<br>probability of success</h1>
+      <p>Every opportunity on the shortlist was picked because its evidence looked best. This view corrects for that before a Sprint Pod commits a trial: each PoS is recomputed from the effect distribution learned across all <b id="h-n">720</b> candidates, after calibrating real-world-evidence bias against past programs.</p>
+    </div>
+  </div>
+</header>
+<div class="band"></div>
+
+<div class="toolbar">
+  <div class="wrap tb">
+    <label><span>Candidate set</span><select id="sel-seed"></select></label>
+    <label><span>Confirmatory trial</span><select id="sel-ev"><option value="120">Randomized, 120 events</option><option value="150" selected>Randomized, 150 events</option><option value="250">Randomized, 250 events</option></select></label>
+    <label><span>Shortlist</span><select id="sel-k"><option value="5">Top 5</option><option value="10" selected>Top 10</option><option value="20">Top 20</option></select></label>
+    <label><span>Rank by</span><select id="sel-rank"><option value="naive" selected>Unadjusted PoS (current)</option><option value="adjusted">Adjusted PoS</option></select></label>
+    <label class="tg"><input type="checkbox" id="chk-truth"><span class="box"></span><span class="tl">Reveal simulated truth</span></label>
+  </div>
+</div>
+
+<main class="wrap">
+  <section>
+    <div class="shead">
+      <h2>Shortlist</h2>
+      <div class="cols"><span>Evidence</span><span>RWE HR</span><span>Adjusted HR</span><span>Probability of success</span></div>
+    </div>
+    <div id="list"></div>
+    <div class="legend"><span><i class="d f"></i>Adjusted PoS</span><span><i class="d g"></i>Lost to selection bias</span><span><i class="d"></i>Remaining</span><span class="sp">Each dot = 5%. Hazard ratios: 90% intervals. Trial: 1:1 randomized vs standard of care, one-sided &alpha; = 0.025.</span></div>
+  </section>
+
+  <section class="grid2">
+    <div>
+      <h3>Why the top of the list is optimistic</h3>
+      <p class="sub" id="shrink-sub"></p>
+      <div class="chart"><canvas id="c-shrink"></canvas></div>
+    </div>
+    <div>
+      <h3>What the whole candidate set says</h3>
+      <p class="sub" id="prior-sub"></p>
+      <div class="chart"><canvas id="c-prior"></canvas></div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Does it hold up?</h3>
+    <p class="sub" id="val-sub"></p>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid2 inner">
+      <div><div class="ctitle">Predicted vs realized trial success (shortlists ranked by unadjusted PoS)</div><div class="chart"><canvas id="c-rel"></canvas></div></div>
+      <div><div class="ctitle">Realized success of the shortlist, by ranking used</div><div class="chart"><canvas id="c-hit"></canvas></div></div>
+    </div>
+  </section>
+
+  <section class="calib">
+    <h3>Real-world-evidence bias calibration</h3>
+    <div class="cal" id="cal"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap ft">
+    <img src="assets/pathos-logo-white.svg" alt="Pathos">
+    <span>Unofficial concept demo by Mohith Gajjela. Not affiliated with Pathos AI. Synthetic data: assets, subgroups and outcomes are simulated; mechanism and biomarker names are generic.</span>
+  </div>
+</footer>
+
+<script src="data/validation.js"></script>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
