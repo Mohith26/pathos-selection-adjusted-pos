@@ -44,7 +44,7 @@ standard error does not fix it, because the error is in the selection, not in an
 | Shortlist chosen by adjusted PoS | 64% (adjusted) | 67% |
 
 Brier score on the unadjusted-ranked shortlists: 0.251 adjusted vs 0.383 unadjusted. Across all nine designs on the page
-(120/150/250 events x top 5/10/20) the unadjusted PoS overstates realized success by 19-44 points, the adjusted PoS is
+(120/150/250 events x top 5/10/20) the unadjusted PoS overstates realized success by 19-42 points, the adjusted PoS is
 within 0-6 points (slightly conservative), and ranking by adjusted PoS raises realized success by 4-10 points. The reliability diagram on the page is honest about
 the residual miscalibration: the adjusted PoS is somewhat conservative in its lowest bins and a little optimistic in its
 highest.
