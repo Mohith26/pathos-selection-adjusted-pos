@@ -2,8 +2,10 @@ import * as C from "./core.js";
 
 const $ = (id) => document.getElementById(id);
 const VAL = window.PATHOS_VALIDATION;
-const SEEDS = [2026, 2027, 2028, 2029, 2030];
-const state = { seed: 2026, ev: 150, k: 10, rank: "naive", truth: false, open: 0 };
+// Default candidate set: 2027, the one whose top-10 adjusted PoS (53%) and true power (58%) sit closest to the
+// 100-portfolio study averages (58% / 58%), so the first view is typical rather than flattering.
+const SEEDS = [2027, 2026, 2028, 2029, 2030];
+const state = { seed: 2027, ev: 150, k: 10, rank: "naive", truth: false, open: 0 };
 for (const [k, v] of new URLSearchParams(location.hash.slice(1))) {
   if (k === "seed" && SEEDS.includes(+v)) state.seed = +v;
   if (k === "ev" && ["120", "150", "250"].includes(v)) state.ev = +v;
