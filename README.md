@@ -52,7 +52,10 @@ highest.
 ## Run it
 
 Static page, no build step: open `index.html`. The selected candidate set is generated and analyzed in the browser
-(~0.1 s); the simulation study is precomputed by `scripts/validate.mjs` with the same core.
+(~0.1 s); the simulation study is precomputed by `scripts/validate.mjs` with the same core. The default candidate set
+(seed 2027) is the one of the five offered whose top-10 adjusted PoS and true power sit closest to the study averages,
+so the first view is typical rather than flattering; the others are one click away. Append `#truth=1` to the URL to
+show the simulated true hazard ratios.
 
 ```
 node --test tests/core.test.mjs   # 10 tests
